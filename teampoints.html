@@ -5,7 +5,7 @@
 #Table1 {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 100%;  
 }
 
 #Table1 td, #Table1 th {
@@ -20,9 +20,15 @@
 #Table1 th {
   padding-top: 5px;
   padding-bottom: 5px;
-  text-align: left;
-  background-color: #db190b;
+  text-align: center;
+  background-color: #343deb;
   color: white;
+}
+
+.box {
+  float: left;
+  width: 33.33%;
+  padding: 3px;
 }
 </style>
 </head>
@@ -32,6 +38,7 @@
 
 <h1>Team points </h1>
 <!-- Next -->
+
 <script type="text/javascript">
     function checkTotal() {
         document.listForm.total.value = '';
@@ -48,11 +55,16 @@
         document.listForm.total.value = sum;
         document.listForm.balance.value = balance;
         document.listForm.players.value = players;
+        document.getElementById("Count").innerHTML = players;
+        document.getElementById("Total").innerHTML = sum;
+        document.getElementById("Balance").innerHTML = balance;
     }
 </script>
+
 <Table id="Table1">
-<Tr><TH></TH><Th>Player Name </Th><TH>Points </TH></Tr>
+<Tr><TH>No:<div id=Count> 0 </div> </TH><Th>Total Points <div id="Total"> 0</div>  </Th><TH>Balance <div id="Balance">15 </div> </TH></Tr>
 <form name="listForm">
+
 <TR><TD><input type="checkbox" name="choice" value="1" onchange="checkTotal()"/> </TD> <TD> Denny V </TD>  <TD> 1 </TD></TR>
 <TR><TD><input type="checkbox" name="choice" value="4.5" onchange="checkTotal()"/> </TD> <TD> Leanna </TD>  <TD> 4.5 </TD></TR>
 <TR><TD><input type="checkbox" name="choice" value="5" onchange="checkTotal()"/> </TD> <TD> Jordan </TD>  <TD> 5 </TD></TR>
@@ -62,11 +74,13 @@
 <TR><TD><input type="checkbox" name="choice" value="2.5" onchange="checkTotal()"/> </TD> <TD> Chris </TD> <TD> 2.5 </TD></TR>
 
 </Table>
-<p>
-Total: <input type="text" size="4" name="total" value="0"/>
-Balance: <input type="text" size="4" name="balance" value="15"/> </p>
-<p> Number of Players: <input type="text" size="2" name="players" value="0"/> </p>
+<div class="box" style="background-color:#ccc">
+Players: <input type="text" size="2" name="players" value="0"/>
+Total Point: <input type="text" size="4" name="total" value="0"/>
+Available Points: <input type="text" size="4" name="balance" value="15"/> </p>
+</div>
 </form>
- <!-- End custom -->
+
+
 </body>
 </html>
