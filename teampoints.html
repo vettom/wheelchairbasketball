@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<!-- Created for Acess to calculate Team points. Table header change color if any violation. -->
+
 <head>
-<style>
+  <style>
 #Table1 {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;  
 }
-
 #Table1 td, #Table1 th {
   border: 1px solid #ddd;
   padding: 5    px;
 }
-
 #Table1 tr:nth-child(even){background-color: #f2f2f2;}
-
 #Table1 tr:hover {background-color: #ddd;}
-
 #Table1 th {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -24,63 +22,107 @@
   background-color: #343deb;
   color: white;
 }
-
 .box {
   float: left;
   width: 33.33%;
   padding: 3px;
 }
 </style>
+
+  <title>Acess Wheelchair Basketball</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
-
 <body>
 
+<div class="container">
+  <div class="jumbotron">
+    <h1>  <a href="https://vettom.github.io/aces/">
+  <img src="https://vettom.github.io/aces/images/home.png" alt="Home" style="width:64px;height:64px;"></a>
+      Wheelchair Basketball Training </h1>
+
+       </div>
+
+<!-- Start of Body -->
+
 <h1>Team points </h1>
-<!-- Next -->
+
 
 <script type="text/javascript">
     function checkTotal() {
         document.listForm.total.value = '';
-        var sum = 0;
-        var players = 0;
+        var Total_Points = 0;
+        var Player_Count = 0;
         for (i=0;i<document.listForm.choice.length;i++) {
           if (document.listForm.choice[i].checked) {
-            sum = sum + parseFloat(document.listForm.choice[i].value);
-            players = players + 1
-            // sum = sum + parseInt(document.listForm.choice[i].value);
+            Total_Points = Total_Points + parseFloat(document.listForm.choice[i].value);
+            Player_Count = Player_Count + 1
+            // Total_Points = Total_Points + parseInt(document.listForm.choice[i].value);
           }
         }
-        balance = parseFloat(15.00  - sum)
-        document.listForm.total.value = sum;
-        document.listForm.balance.value = balance;
-        document.listForm.players.value = players;
-        document.getElementById("Count").innerHTML = players;
-        document.getElementById("Total").innerHTML = sum;
-        document.getElementById("Balance").innerHTML = balance;
+        Available_Points = parseFloat(15.00  - Total_Points)
+        document.listForm.total.value = Total_Points;
+        document.listForm.Available_Points.value = Available_Points;
+        document.listForm.Player_Count.value = Player_Count;
+        document.getElementById("Count").innerHTML = Player_Count;
+        document.getElementById("Total").innerHTML = Total_Points;
+        document.getElementById("Available_Points").innerHTML = Available_Points;
+
+        // Section for Cell color.
+        // Red = #a11b00
+        // Green = #00a116
+        if (Player_Count == 5 )
+        { 
+            document.getElementById('PCount').style.backgroundColor='#00a116'; 
+        } else {
+          document.getElementById('PCount').style.backgroundColor='#a11b00'; 
+        }
+        // Player count Header color
+        if (Total_Points <= 15 )
+        { 
+            document.getElementById('TPoints').style.backgroundColor='#00a116'; 
+        } else {
+          document.getElementById('TPoints').style.backgroundColor='#a11b00'; 
+        }
+        // Available Points Cell
+        if (Available_Points >= 0 )
+        { 
+            document.getElementById('APoints').style.backgroundColor='#00a116'; 
+        } else {
+          document.getElementById('APoints').style.backgroundColor='#a11b00'; 
+        }
 
     }
 </script>
 
 <Table id="Table1">
-<Tr><TH>No:<div id=Count> 0 </div> </TH><Th>Total Points <div id="Total"> 0</div>  </Th><TH>Balance <div id="Balance">15 </div> </TH></Tr>
+<Tr><TH  id="PCount" >No:<div id=Count> 0 </div> </TH> <Th id="TPoints">Total Points <div id="Total"> 0</div>  </Th><TH id="APoints">Available_Points <div id="Available_Points">15 </div> </TH></Tr>
+<!-- <Tr><TH>No:<div id=Count> 0 </div> </TH><Th>Total Points <div id="Total"> 0</div>  </Th><TH>Available_Points <div id="Available_Points">15 </div> </TH></Tr> -->
 <form name="listForm">
 
-<TR><TD><input type="checkbox" name="choice" value="1" onchange="checkTotal()"/> </TD> <TD> Denny V </TD>  <TD> 1 </TD></TR>
-<TR><TD><input type="checkbox" name="choice" value="4.5" onchange="checkTotal()"/> </TD> <TD> Leanna </TD>  <TD> 4.5 </TD></TR>
 <TR><TD><input type="checkbox" name="choice" value="5" onchange="checkTotal()"/> </TD> <TD> Jordan </TD>  <TD> 5 </TD></TR>
-<TR><TD><input type="checkbox" name="choice" value="1" onchange="checkTotal()"/> </TD> <TD> Ella </TD>  <TD> 1 </TD></TR>
-<TR><TD><input type="checkbox" name="choice" value="1.5" onchange="checkTotal()"/> </TD> <TD> Andy </TD>  <TD> 1.5 </TD></TR>
+<TR><TD><input type="checkbox" name="choice" value="4.5" onchange="checkTotal()"/> </TD> <TD> Leanna </TD>  <TD> 4.5 </TD></TR>
 <TR><TD><input type="checkbox" name="choice" value="3" onchange="checkTotal()"/> </TD> <TD> Charly </TD>  <TD> 3 </TD></TR>
 <TR><TD><input type="checkbox" name="choice" value="2.5" onchange="checkTotal()"/> </TD> <TD> Chris </TD> <TD> 2.5 </TD></TR>
+<TR><TD><input type="checkbox" name="choice" value="1.5" onchange="checkTotal()"/> </TD> <TD> Andy </TD>  <TD> 1.5 </TD></TR>
+<TR><TD><input type="checkbox" name="choice" value="1" onchange="checkTotal()"/> </TD> <TD> Ella </TD>  <TD> 1 </TD></TR>
+<TR><TD><input type="checkbox" name="choice" value="1" onchange="checkTotal()"/> </TD> <TD> Denny V </TD>  <TD> 1 </TD></TR>
 
 </Table>
 <div class="box" style="background-color:#ccc">
-Players: <input type="text" size="2" name="players" value="0"/>
+Player_Count: <input type="text" size="2" name="Player_Count" value="0"/>
 Total Point: <input type="text" size="4" name="total" value="0"/>
-Available Points: <input type="text" size="4" name="balance" value="15"/> </p>
+Available Points: <input type="text" size="4" name="Available_Points" value="15"/> </p>
 </div>
 </form>
+
+<!-- End of my code -->
+
+</div>
+</div>
 
 
 </body>
